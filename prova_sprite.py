@@ -8,9 +8,12 @@ class MyGame(arcade.Window):
         super().__init__(width, height, title)
 
         self.sprite = None
+        self.sprite_sasso=None
         self.playerSpriteList = arcade.SpriteList()
-
+        self.SassoSpriteList = arcade.SpriteList()
         self.setup()
+
+        self.sasso_setup()
 
         self.keys_pressed = {
             'up': False,
@@ -18,6 +21,16 @@ class MyGame(arcade.Window):
             'left': False,
             'right': False
         }
+
+    def sasso_setup(self):
+        self.sprite= arcade.Sprite("./assets/sasso.png")
+
+        self.sprite_sasso.center_x = 200
+        self.sprite_sasso.center_y = 200
+        self.sprite_sasso.scale_x = 0.1
+        self.sprite_sasso.scale_y = 0.1
+
+        self.SassoSpriteList.append(self.sprite)
 
     def setup(self):
         
@@ -33,7 +46,9 @@ class MyGame(arcade.Window):
         
 
     def on_draw(self):
+        self.clear()
         self.playerSpriteList.draw()
+        self.SassoSpriteList.draw()
         
     def on_update(self, deltaTime):
         speed = 4  # velocità del personaggio
